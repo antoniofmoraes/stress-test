@@ -24,6 +24,7 @@ func main() {
 		} else {
 			w.Write([]byte("Hello, World!"))
 		}
+		log.Print(status)
 	})
 
 	log.Fatal(http.ListenAndServe(":8080", nil))

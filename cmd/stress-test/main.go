@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"log"
+
+	"github.com/antoniofmoraes/stress-test/internals/services"
 )
 
 func main() {
@@ -18,5 +20,19 @@ func main() {
 		log.Fatal("The concurrency number needs to be less than the number of requests.")
 	}
 
-	log.Printf("URL: %s. Requests: %v. Concurrency: %v.", *url, *requests, *concurrency)
+	res := services.StressTest(*url, *requests, *concurrency)
+
+	logResult(res)
+}
+
+func logResult(resultMap map[string]int) {
+	total := 0
+
+	log.Println("Amount of responses by status code.")
+	for statusCode := range resultMap {
+		total += resultMap[statusCode]
+		log.Printf("Code %v: %v", statusCode, resultMap[statusCode])
+	}
+
+	log.Printf("Total: %v", total)
 }
