@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/antoniofmoraes/stress-test/cmd/client/status_picker"
+	"github.com/antoniofmoraes/stress-test/cmd/server/status_picker"
 )
 
 func main() {
